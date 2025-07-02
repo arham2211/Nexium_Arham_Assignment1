@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "daisyui";
 
-@custom-variant dark (&:is(.dark *));
+body {
+  @apply font-sans bg-gradient-to-tr from-purple-100 to-blue-100 dark:from-gray-900 dark:to-gray-800;
+}
 
+.quote-font {
+  font-family: 'Lora', serif;
+}
+@custom-variant dark (&:is(.dark *));
+/* 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -120,4 +128,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
