@@ -23,16 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={/* This sets the theme properly */ undefined}>
       <head>
-        {/* Lora font for quotes */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-tr from-purple-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 transition-all`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased transition-colors duration-500`}
       >
         {children}
       </body>

@@ -7,7 +7,7 @@ const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLI
       <input
         type={type}
         className={cn(
-          "input input-bordered w-full transition duration-200",
+          "input input-bordered w-full transition-all duration-100 ease-in-out",
           className
         )}
         ref={ref}
