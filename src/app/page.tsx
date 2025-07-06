@@ -76,89 +76,92 @@ export default function HomePage() {
   };
 
   return (
-    <main
-      className="min-h-screen flex items-center justify-center p-4 transition-all 
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1 flex items-center justify-center p-4 transition-all 
              bg-gradient-to-tr from-purple-100 to-blue-100 
-             dark:from-gray-900 dark:to-gray-800"
-    >
-      <div className="bg-white dark:bg-base-200 shadow-xl p-8 rounded-xl max-w-2xl w-full text-center space-y-6 border border-purple-200 dark:border-gray-600">
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold text-purple-800 dark:text-purple-300 quote-font">
-            Quote of the Day
-          </h1>
-          <Button variant="ghost" onClick={toggleTheme}>
-            {theme === "light" ? <Moon /> : <Sun />}
+             dark:from-gray-900 dark:to-gray-800">
+        <div className="bg-white dark:bg-base-200 shadow-xl p-8 rounded-xl max-w-2xl w-full text-center space-y-6 border border-purple-200 dark:border-gray-600">
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl font-bold text-purple-800 dark:text-purple-300 quote-font">
+              Quote of the Day
+            </h1>
+            <Button variant="ghost" onClick={toggleTheme}>
+              {theme === "light" ? <Moon /> : <Sun />}
+            </Button>
+          </div>
+
+          <div className="relative" ref={suggestionRef}>
+            <Input
+              value={topic}
+              onFocus={() => setShowSuggestions(true)}
+              onChange={(e) => {
+                setTopic(e.target.value);
+                setShowSuggestions(true);
+              }}
+              placeholder="Search topic (e.g. love, life)"
+              className="input input-bordered w-full"
+            />
+            {showSuggestions && topic && (
+              <ul className="absolute left-0 right-0 mt-2 z-10 bg-white dark:bg-base-200 rounded-lg shadow-md text-left max-h-52 overflow-y-auto">
+                {allTopics
+                  .filter((t) => t.toLowerCase().includes(topic.toLowerCase()))
+                  .map((t, i) => (
+                    <li
+                      key={i}
+                      onClick={() => {
+                        setTopic(t);
+                        setFilteredQuotes(
+                          quotes.filter((q) => q.topic === t).slice(0, 3)
+                        );
+                        setShowSuggestions(false);
+                      }}
+                      className="cursor-pointer px-4 py-2 hover:bg-purple-100 dark:hover:bg-purple-900"
+                    >
+                      {t}
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </div>
+
+          <Button
+            onClick={handleSearch}
+            className="bg-gradient-to-r from-purple-400 to-blue-400 text-white font-semibold px-6 py-2 rounded-full shadow hover:scale-105 transition"
+          >
+            New Quote
           </Button>
-        </div>
 
-        <div className="relative" ref={suggestionRef}>
-          <Input
-            value={topic}
-            onFocus={() => setShowSuggestions(true)}
-            onChange={(e) => {
-              setTopic(e.target.value);
-              setShowSuggestions(true);
-            }}
-            placeholder="Search topic (e.g. love, life)"
-            className="input input-bordered w-full"
-          />
-          {showSuggestions && topic && (
-            <ul className="absolute left-0 right-0 mt-2 z-10 bg-white dark:bg-base-200 rounded-lg shadow-md text-left max-h-52 overflow-y-auto">
-              {allTopics
-                .filter((t) => t.toLowerCase().includes(topic.toLowerCase()))
-                .map((t, i) => (
-                  <li
-                    key={i}
-                    onClick={() => {
-                      setTopic(t);
-                      setFilteredQuotes(
-                        quotes.filter((q) => q.topic === t).slice(0, 3)
-                      );
-                      setShowSuggestions(false);
-                    }}
-                    className="cursor-pointer px-4 py-2 hover:bg-purple-100 dark:hover:bg-purple-900"
+          <div className="space-y-6">
+            {filteredQuotes.length === 0 ? (
+              <p className="text-gray-500">
+                No quotes yet. Try searching a topic!
+              </p>
+            ) : (
+              filteredQuotes.map((quote, idx) => (
+                <div key={idx} className="space-y-2">
+                  <blockquote className="italic text-xl text-purple-700 dark:text-purple-300 quote-font">
+                    "{quote.text}"
+                  </blockquote>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    — {quote.author}
+                  </p>
+                  <Button
+                    onClick={() => copyQuote(quote.text)}
+                    size="sm"
+                    variant="ghost"
+                    className="text-blue-500 hover:text-blue-700"
                   >
-                    {t}
-                  </li>
-                ))}
-            </ul>
-          )}
+                    <Copy className="w-4 h-4 mr-1" /> Copy
+                  </Button>
+                </div>
+              ))
+            )}
+          </div>
         </div>
-
-        <Button
-          onClick={handleSearch}
-          className="bg-gradient-to-r from-purple-400 to-blue-400 text-white font-semibold px-6 py-2 rounded-full shadow hover:scale-105 transition"
-        >
-          New Quote
-        </Button>
-
-        <div className="space-y-6">
-          {filteredQuotes.length === 0 ? (
-            <p className="text-gray-500">
-              No quotes yet. Try searching a topic!
-            </p>
-          ) : (
-            filteredQuotes.map((quote, idx) => (
-              <div key={idx} className="space-y-2">
-                <blockquote className="italic text-xl text-purple-700 dark:text-purple-300 quote-font">
-                  “{quote.text}”
-                </blockquote>
-                <p className="text-gray-600 dark:text-gray-300">
-                  — {quote.author}
-                </p>
-                <Button
-                  onClick={() => copyQuote(quote.text)}
-                  size="sm"
-                  variant="ghost"
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  <Copy className="w-4 h-4 mr-1" /> Copy
-                </Button>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-    </main>
+      </main>
+      <footer className="py-4 text-center text-sm text-gray-500 dark:text-gray-400">
+        © 2025 Arham Affan. All rights reserved.
+      </footer>
+    </div>
   );
 }

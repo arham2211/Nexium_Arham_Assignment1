@@ -10,6 +10,11 @@
     "author": "Anonymous"
   },
   {
+    "topic": "motivation",
+    "text": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "author": "Winston Churchill"
+  },
+  {
     "topic": "success",
     "text": "Don’t be afraid to give up the good to go for the great.",
     "author": "John D. Rockefeller"
@@ -20,13 +25,38 @@
     "author": "Unknown"
   },
   {
+    "topic": "success",
+    "text": "The only place where success comes before work is in the dictionary.",
+    "author": "Vidal Sassoon"
+  },
+  {
     "topic": "love",
     "text": "Do what you love, love what you do, and with all your heart give yourself to it.",
     "author": "Roy T. Bennett"
   },
   {
+    "topic": "love",
+    "text": "Where there is love, there is life.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "topic": "love",
+    "text": "The best thing to hold onto in life is each other.",
+    "author": "Audrey Hepburn"
+  },
+  {
     "topic": "life",
     "text": "Life is really simple, but we insist on making it complicated.",
     "author": "Confucius"
+  },
+  {
+    "topic": "life",
+    "text": "In the end, it’s not the years in your life that count. It’s the life in your years.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "topic": "life",
+    "text": "Life is what happens when you’re busy making other plans.",
+    "author": "John Lennon"
   }
 ]
