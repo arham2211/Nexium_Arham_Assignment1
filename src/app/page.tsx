@@ -139,9 +139,9 @@ export default function HomePage() {
             ) : (
               filteredQuotes.map((quote, idx) => (
                 <div key={idx} className="space-y-2">
-                  <blockquote className="italic text-xl text-purple-700 dark:text-purple-300 quote-font">
-                    "{quote.text}"
-                  </blockquote>
+                 <blockquote className="italic text-xl text-purple-700 dark:text-purple-300 quote-font">
+                  “{quote.text}”
+                </blockquote>
                   <p className="text-gray-600 dark:text-gray-300">
                     — {quote.author}
                   </p>
